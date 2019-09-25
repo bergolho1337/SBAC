@@ -1,2 +1,2 @@
 # SBAC
-Treinamento Maratona de Programação Paralela - LNCC
+Problems sets from the Annual Marathon of Parallel Programming organized by the SBAC-PAD/WSCAD conference.
