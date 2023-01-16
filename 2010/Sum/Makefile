@@ -1,19 +1,24 @@
 FLAGS=-O2
 
-CC=icpc
+CC=g++
 
 RM=rm -f
 
-EXEC=sum
+SERIAL=sum
+PARALLEL=solution
 
-all: $(EXEC)
+all: $(SERIAL) $(PARALLEL)
 
-$(EXEC):
+$(SERIAL):
 	$(CC) $(FLAGS) sum.cpp -c -o sum.o
-	$(CC) $(FLAGS) sum.o -o $(EXEC)
+	$(CC) $(FLAGS) sum.o -o $(SERIAL) -lm
+
+$(PARALLEL):
+	$(CC) $(FLAGS) solution.cpp -c -o solution.o
+	$(CC) $(FLAGS) solution.o -o $(PARALLEL) -lm -fopenmp
 
 run:
-	./$(EXEC)
+	./$(SERIAL)
 
 clean:
-	$(RM) sum.o $(EXEC)
+	$(RM) sum.o $(SERIAL) $(PARALLEL)

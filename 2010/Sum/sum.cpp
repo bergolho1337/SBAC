@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <sstream>
 
 using namespace std;
@@ -37,6 +38,34 @@ void sum(char* output, const long unsigned int d, const long unsigned int n) {
 	stringA.copy(output, stringA.size());
 }
 
+void sum_2 (char* output, const long unsigned int d, const long unsigned int n)
+{
+	// Set the format string of the output
+	char fmt_str[200];
+	sprintf(fmt_str,"%%.%ulf\n",d);
+
+	// Solve the problem
+	double sum = 1.0;
+	for (long unsigned int i = 2; i <= n; i++)
+	{
+		sum += (1.0/(double)i);
+	}
+
+	// Write the answer using the format string
+	sprintf(output,fmt_str,sum);
+	long unsigned int index = 0;
+	for (long unsigned int i = 0; i < d; i++)
+	{
+		if (output[i] == '.')
+		{
+			index = i;
+			break;
+		}
+	}
+	// Change '.' to ','
+	output[index] = ',';
+}
+
 int main() {
 
 	long unsigned int d, n;
@@ -45,7 +74,7 @@ int main() {
 
 	char output[d + 10]; // extra precision due to possible error
 
-	sum(output, d, n);
+	sum_2(output, d, n);
 
 	cout << output;
 
